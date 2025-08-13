@@ -1,0 +1,37 @@
+# Example configuration for Azure DevOps Entity Provider
+catalog:
+  providers:
+    azureDevOps:
+      # Your Azure DevOps organization URL
+      organization: 'https://dev.azure.com/your-organization'
+      
+      # Personal Access Token - use environment variable for security
+      personalAccessToken: '${AZURE_DEVOPS_TOKEN}'
+      
+      # Map Azure DevOps projects to Backstage owners/teams
+      projectOwnerMap:
+        # Format: 'Project Name': 'backstage-owner'
+        'Frontend Applications': 'team-frontend'
+        'Backend Services': 'team-backend'
+        'Mobile Apps': 'team-mobile'
+        'DevOps Tools': 'team-platform'
+        'Legacy Systems': 'team-maintenance'
+        'Research Projects': 'team-research'
+      
+      # Optional: Refresh schedule (cron expression)
+      # Default: every 6 hours
+      schedule: '0 */6 * * *'  # Every 6 hours
+      # schedule: '0 0 * * *'   # Daily at midnight
+      # schedule: '0 9 * * MON' # Weekly on Monday at 9 AM
+      
+      # Optional: Filter projects to include (regex pattern)
+      # Examples:
+      # projectFilter: '^(?!Archive).*'        # Exclude projects starting with "Archive"
+      # projectFilter: '^(Frontend|Backend).*' # Only include Frontend and Backend projects
+      # projectFilter: '.*Production.*'        # Only include projects with "Production" in name
+      
+      # Optional: Filter repositories to include (regex pattern)
+      # Examples:
+      # repositoryFilter: '^(?!archive-).*'    # Exclude repositories starting with "archive-"
+      # repositoryFilter: '.*-service$'        # Only include repositories ending with "-service"
+      # repositoryFilter: '^(?!test-).*'       # Exclude test repositories 
