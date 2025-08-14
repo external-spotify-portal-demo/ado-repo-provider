@@ -1,2 +1,1 @@
-export { AzureDevOpsRepoEntityProvider } from './providers/AzureDevOpsEntityProvider';
-export type { AzureDevOpsRepoEntityProviderConfig } from './providers/AzureDevOpsEntityProvider';
+export {catalogModuleAzureDevOpsEntityProvider as default} from './module';

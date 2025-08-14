@@ -38,10 +38,10 @@ export interface Config {
           owner: string;
         }[];
         /**
-         * Schedule configuration
+         * Schedule configuration (optional - can be provided via backend integration)
          * @visibility frontend
          */
-        schedule: SchedulerServiceTaskScheduleDefinitionConfig;
+        schedule?: SchedulerServiceTaskScheduleDefinitionConfig;
       };
     };
   };

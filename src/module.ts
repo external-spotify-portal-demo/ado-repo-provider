@@ -6,12 +6,17 @@ import { createBackend } from "@backstage/backend-defaults";
 import {
   createBackendModule,
   coreServices,
+  readSchedulerServiceTaskScheduleDefinitionFromConfig,
 } from "@backstage/backend-plugin-api";
 import { catalogProcessingExtensionPoint } from "@backstage/plugin-catalog-node/alpha";
-import { AzureDevOpsEntityProvider } from "@backstage/plugin-azure-devops-entity-provider";
+import { AzureDevOpsRepoEntityProvider } from "./providers/AzureDevOpsEntityProvider";
 
-// Create a backend module for the Azure DevOps entity provider
-const catalogModuleAzureDevOpsEntityProvider = createBackendModule({
+/**
+ * Catalog backend module for the Azure DevOps repository entity provider.
+ *
+ * @alpha
+ */
+export const catalogModuleAzureDevOpsEntityProvider = createBackendModule({
   pluginId: "catalog",
   moduleId: "azure-devops-repo-entity-provider",
   register(env) {
@@ -23,6 +28,7 @@ const catalogModuleAzureDevOpsEntityProvider = createBackendModule({
         scheduler: coreServices.scheduler,
       },
       async init({ catalog, config, logger, scheduler }) {
+        logger.info("Initializing Azure DevOps Repo Entity Provider");
         const providerConfig = config.getConfig(
           "catalog.providers.azureDevOpsRepo"
         );

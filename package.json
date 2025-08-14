@@ -1,15 +1,15 @@
 {
   "name": "@internal/plugin-azure-devops-entity-provider",
-  "version": "0.1.12",
+  "version": "0.1.25",  
   "description": "Backstage entity provider for Azure DevOps repositories",
-  "main": "src/index.ts",
-  "types": "src/index.ts",
+  "main": "dist/index.cjs.js",
+  "types": "dist/index.d.ts",
   "license": "Apache-2.0",
   "publishConfig": {
     "access": "public",
     "main": "dist/index.cjs.js",
     "types": "dist/index.d.ts",
-    "registry": "http://your_plugin_registry_url"
+    "registry": "https://<insert_your_spotify_portal_url>/api/plugin-installer/registry/npm"
   },
   "backstage": {
     "role": "backend-plugin-module",
@@ -30,7 +30,7 @@
   "dependencies": {
     "@backstage/backend-plugin-api": "^1.0.2",
     "@backstage/catalog-model": "^1.7.3",
-    "@backstage/plugin-catalog-node": "^1.15.1",
+    "@backstage/plugin-catalog-node": "^1.17.2",
     "@backstage/types": "^1.1.1",
     "azure-devops-node-api": "^12.0.0",
     "lodash": "^4.17.21",
@@ -47,5 +47,12 @@
     "config.d.ts"
   ],
   "configSchema": "config.d.ts",
-  "packageManager": "yarn@4.9.2"
+  "packageManager": "yarn@4.9.2",
+  "typesVersions": {
+    "*": {
+      "index": [
+        "dist/index.d.ts"
+      ]
+    }
+  }
 }
