@@ -1,6 +1,6 @@
 {
   "name": "@internal/plugin-azure-devops-entity-provider",
-  "version": "0.1.25",  
+  "version": "0.1.31",
   "description": "Backstage entity provider for Azure DevOps repositories",
   "main": "dist/index.cjs.js",
   "types": "dist/index.d.ts",

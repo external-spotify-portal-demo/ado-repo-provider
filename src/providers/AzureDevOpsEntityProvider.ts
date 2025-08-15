@@ -194,6 +194,9 @@ export class AzureDevOpsRepoEntityProvider implements EntityProvider {
       return null;
     }
 
+    const sanitizedProjectName = project.name.toLowerCase().replace(/[^a-z0-9]/g, "-").replace(/-+/g, "-");
+    const sanitizedRepositoryName = repository.name.toLowerCase().replace(/[^a-z0-9]/g, "-").replace(/-+/g, "-");
+
     const owner =
       this.config.projectOwnerMap
         .find((p) => p.getString("projectName") === project.name)
@@ -211,11 +214,7 @@ export class AzureDevOpsRepoEntityProvider implements EntityProvider {
       apiVersion: "backstage.io/v1alpha1",
       kind: "Component",
       metadata: {
-        name: `${project.name
-          .toLowerCase()
-          .replace(/[^a-z0-9-]/g, "-")}-${repository.name
-          .toLowerCase()
-          .replace(/[^a-z0-9-]/g, "-")}`,
+        name: `${sanitizedProjectName}-${sanitizedRepositoryName}`,
         title: repository.name,
         description: `Repository ${repository.name} in Azure DevOps project ${project.name}`,
         annotations: {
@@ -224,7 +223,7 @@ export class AzureDevOpsRepoEntityProvider implements EntityProvider {
           "backstage.io/managed-by-origin-location": `azure-devops:${this.config.organization}`,
           "backstage.io/source-location": repoUrl,
         },
-        tags: ["azure-devops", project.name.toLowerCase()],
+        tags: ["azure-devops", sanitizedProjectName],
         links: [
           {
             url: repoUrl,
