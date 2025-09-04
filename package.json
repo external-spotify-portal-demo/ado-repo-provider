@@ -1,6 +1,6 @@
 {
   "name": "@internal/plugin-azure-devops-entity-provider",
-  "version": "0.1.25",  
+  "version": "0.1.28",  
   "description": "Backstage entity provider for Azure DevOps repositories",
   "main": "dist/index.cjs.js",
   "types": "dist/index.d.ts",
@@ -9,7 +9,7 @@
     "access": "public",
     "main": "dist/index.cjs.js",
     "types": "dist/index.d.ts",
-    "registry": "https://<insert_your_spotify_portal_url>/api/plugin-installer/registry/npm"
+    "registry": "https://sandbox.spotifyportal.com/api/plugin-installer/registry/npm"
   },
   "backstage": {
     "role": "backend-plugin-module",

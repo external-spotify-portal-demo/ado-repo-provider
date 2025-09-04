@@ -27,7 +27,7 @@ export class AzureDevOpsRepoEntityProvider implements EntityProvider {
     config: Config,
     options: {
       logger: Logger;
-      schedule:SchedulerServiceTaskRunner
+      schedule: SchedulerServiceTaskRunner;
     }
   ): AzureDevOpsRepoEntityProvider {
     const providerConfig = config.getConfig(
@@ -211,18 +211,14 @@ export class AzureDevOpsRepoEntityProvider implements EntityProvider {
       apiVersion: "backstage.io/v1alpha1",
       kind: "Component",
       metadata: {
-        name: `${project.name
-          .toLowerCase()
-          .replace(/[^a-z0-9-]/g, "-")}-${repository.name
-          .toLowerCase()
-          .replace(/[^a-z0-9-]/g, "-")}`,
+        name: `${repository.name.toLowerCase().replace(/[^a-z0-9-]/g, "-")}`,
         title: repository.name,
         description: `Repository ${repository.name} in Azure DevOps project ${project.name}`,
         annotations: {
           "azure-devops.com/project-repo": `${project.name}/${repository.name}`,
           "backstage.io/managed-by-location": `azure-devops:${this.config.organization}`,
           "backstage.io/managed-by-origin-location": `azure-devops:${this.config.organization}`,
-          "backstage.io/source-location": repoUrl,
+          "backstage.io/source-location": `url:${repoUrl}/`,
         },
         tags: ["azure-devops", project.name.toLowerCase()],
         links: [
